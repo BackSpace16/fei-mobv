@@ -1,0 +1,1 @@
+# Mobilné výpočty, cvičenia
