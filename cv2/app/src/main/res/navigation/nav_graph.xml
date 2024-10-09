@@ -1,0 +1,21 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/intro">
+
+    <fragment
+        android:id="@+id/intro"
+        android:name="com.example.cv2.Intro">
+
+        <action
+            android:id="@+id/intro_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/intro_to_register"
+            app:destination="@id/register" />
+    </fragment>
+
+    <fragment android:id="@+id/login" android:name="com.example.cv2.Login" />
+    <fragment android:id="@+id/register" android:name="com.example.cv2.Registration" />
+
+</navigation>
