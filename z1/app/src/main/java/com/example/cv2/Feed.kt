@@ -21,6 +21,7 @@ class Feed : Fragment(R.layout.fragment_feed) {
             MyItem(R.drawable.img4,"Významná slovenská univerzita sa umiestnila na chvoste svetového rebríčka!"),
             MyItem(R.drawable.img5,"ZOSTALA ZHROZENÁ! Pozrite čo objavila mladá Prešovčanka na balkóne!"),
             MyItem(R.drawable.img6,"Top 10 dôvodov prečo by ste práve VY mali prestať v tom čo robíte!"),
+            MyItem(R.drawable.img7,"Doscrollovali ste na koniec? Poradíme vám čo ďalej!"),
         ))
     }
 }
