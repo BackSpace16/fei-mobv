@@ -15,12 +15,12 @@ class Feed : Fragment(R.layout.fragment_feed) {
         val feedAdapter = FeedAdapter()
         recyclerView.adapter = feedAdapter
         feedAdapter.updateItems(listOf(
-            MyItem(R.drawable.list,"Prečo je Android lepší ako Windows Phone - povedali nám odborníci z STU"),
-            MyItem(R.drawable.list,"ŠOKUJÚCE! Ako RÝCHLO tento mladík vie rozoznať drozda od sýkorky!"),
-            MyItem(R.drawable.list,"Nová pracovná pozícia Vrátnik / Cvičiaci - profesia"),
-            MyItem(R.drawable.list,"Významná slovenská univerzita sa umiestnila na chvoste svetového rebríčka!"),
-            MyItem(R.drawable.list,"ZOSTALA ZHROZENÁ! Pozrite čo objavila mladá Prešovčanka na balkóne!"),
-            MyItem(R.drawable.list,"Top 10 dôvodov prečo by ste práve VY mali prestať v tom čo robíte!"),
+            MyItem(R.drawable.img1,"Prečo je Android lepší ako Windows Phone - povedali nám odborníci z STU"),
+            MyItem(R.drawable.img2,"ŠOKUJÚCE! Ako RÝCHLO tento mladík vie rozoznať drozda od sýkorky!"),
+            MyItem(R.drawable.img3,"Nová pracovná pozícia Vrátnik / Cvičiaci - profesia"),
+            MyItem(R.drawable.img4,"Významná slovenská univerzita sa umiestnila na chvoste svetového rebríčka!"),
+            MyItem(R.drawable.img5,"ZOSTALA ZHROZENÁ! Pozrite čo objavila mladá Prešovčanka na balkóne!"),
+            MyItem(R.drawable.img6,"Top 10 dôvodov prečo by ste práve VY mali prestať v tom čo robíte!"),
         ))
     }
 }
