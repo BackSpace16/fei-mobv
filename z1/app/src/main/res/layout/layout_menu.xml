@@ -14,11 +14,11 @@
         android:paddingVertical="20dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/list"
+        app:layout_constraintEnd_toStartOf="@id/feed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/list"
+        android:id="@+id/feed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/list"
@@ -26,11 +26,11 @@
         android:paddingVertical="20dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/person"
+        app:layout_constraintEnd_toStartOf="@id/profile"
         app:layout_constraintStart_toEndOf="@id/map" />
 
     <ImageView
-        android:id="@+id/person"
+        android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/person"
@@ -39,6 +39,6 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/list" />
+        app:layout_constraintStart_toEndOf="@id/feed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
