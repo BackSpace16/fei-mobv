@@ -25,7 +25,11 @@
 
     <fragment android:id="@+id/map" android:name="com.example.cv2.Map" />
     <fragment android:id="@+id/feed" android:name="com.example.cv2.Feed" />
-    <fragment android:id="@+id/profile" android:name="com.example.cv2.Profile" />
+    <fragment android:id="@+id/profile" android:name="com.example.cv2.Profile" >
+        <action
+            android:id="@+id/logout"
+            app:destination="@id/intro" />
+    </fragment>
 
     <action
         android:id="@+id/to_map"
