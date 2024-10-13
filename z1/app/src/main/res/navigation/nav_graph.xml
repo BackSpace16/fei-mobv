@@ -1,7 +1,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/map">
+    app:startDestination="@+id/intro">
 
     <fragment
         android:id="@+id/intro"
@@ -16,7 +16,12 @@
     </fragment>
 
     <fragment android:id="@+id/login" android:name="com.example.cv2.Login" />
-    <fragment android:id="@+id/register" android:name="com.example.cv2.Registration" />
+    <fragment
+        android:id="@+id/register" android:name="com.example.cv2.Registration">
+        <action
+            android:id="@+id/register_to_login"
+            app:destination="@id/login" />
+    </fragment>
 
     <fragment android:id="@+id/map" android:name="com.example.cv2.Map" />
     <fragment android:id="@+id/feed" android:name="com.example.cv2.Feed" />

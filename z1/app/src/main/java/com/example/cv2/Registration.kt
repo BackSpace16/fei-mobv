@@ -26,5 +26,9 @@ class Registration : Fragment(R.layout.fragment_registration) {
 
             Log.d("RegistrationFragment", "Zadaný text: $email, $username")
         }
+
+        view.findViewById<Button>(R.id.submitButton).setOnClickListener { view ->
+            view.findNavController().navigate(R.id.register_to_login)
+        }
     }
 }
