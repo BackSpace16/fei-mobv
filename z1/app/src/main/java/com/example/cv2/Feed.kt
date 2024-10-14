@@ -3,8 +3,10 @@ package com.example.cv2
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 
 class Feed : Fragment(R.layout.fragment_feed) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,5 +25,19 @@ class Feed : Fragment(R.layout.fragment_feed) {
             MyItem(R.drawable.img6,"Top 10 dôvodov prečo by ste práve VY mali prestať v tom čo robíte!"),
             MyItem(R.drawable.img7,"Doscrollovali ste na koniec? Poradíme vám čo ďalej!"),
         ))
+
+
+        val snackbar = Snackbar.make(requireActivity().findViewById(R.id.feed), "VYHRAJTE IPHONE 17!!!", Snackbar.LENGTH_LONG)
+        snackbar.setAction("IHNEĎ!!!") {
+            // Kód, ktorý sa vykoná po stlačení akcie
+            performAction()
+        }
+        snackbar.show()
+    }
+
+    // Metóda pre akciu
+    private fun performAction() {
+        // Tu pridaj kód, ktorý sa vykoná pri stlačení akcie
+        Toast.makeText(context, "smola, skúste štastie nabudúce", Toast.LENGTH_SHORT).show()
     }
 }
