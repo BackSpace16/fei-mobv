@@ -3,10 +3,10 @@ package com.example.cv2
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.google.android.material.button.MaterialButton
 
 class Profile : Fragment(R.layout.fragment_profile) {
 
@@ -26,7 +26,7 @@ class Profile : Fragment(R.layout.fragment_profile) {
             emailText.text = userInput
         }
 
-        view.findViewById<Button>(R.id.logout).setOnClickListener { view ->
+        view.findViewById<MaterialButton>(R.id.logout).setOnClickListener { view ->
             view.findNavController().navigate(R.id.logout)
         }
     }

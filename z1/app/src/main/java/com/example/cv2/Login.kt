@@ -2,11 +2,11 @@ package com.example.cv2
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.google.android.material.button.MaterialButton
 
 class Login : Fragment(R.layout.fragment_login) {
 
@@ -19,7 +19,7 @@ class Login : Fragment(R.layout.fragment_login) {
 
         val usernameField = view.findViewById<EditText>(R.id.editText1)
 
-        view.findViewById<Button>(R.id.submitButton).setOnClickListener { view ->
+        view.findViewById<MaterialButton>(R.id.submitButton).setOnClickListener { view ->
             val username = usernameField?.text.toString()
             sharedViewModel.username.value = username
 
