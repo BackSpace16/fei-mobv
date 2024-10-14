@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style name="TextStyle">
+    <item name="android:textColor">#FF0000</item>
+    <item name="android:textSize">18sp</item>
+</style>
