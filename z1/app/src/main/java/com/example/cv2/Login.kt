@@ -3,10 +3,13 @@ package com.example.cv2
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class Login : Fragment(R.layout.fragment_login) {
 
@@ -17,7 +20,11 @@ class Login : Fragment(R.layout.fragment_login) {
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-        val usernameField = view.findViewById<EditText>(R.id.editText1)
+        val usernameField = view.findViewById<TextInputEditText>(R.id.editText1)
+
+
+        view.findViewById<TextInputLayout>(R.id.input1).setHint(getString(R.string.username).replaceFirstChar{it.titlecase()})
+        view.findViewById<TextInputLayout>(R.id.input2).setHint(getString(R.string.password).replaceFirstChar{it.titlecase()})
 
         view.findViewById<MaterialButton>(R.id.submitButton).setOnClickListener { view ->
             val username = usernameField?.text.toString()
