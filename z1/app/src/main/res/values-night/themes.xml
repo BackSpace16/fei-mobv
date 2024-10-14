@@ -6,6 +6,10 @@
         <item name="buttonStyle">@style/blueButton</item>
     </style>
 
+    <style name="menuIcon">
+        <item name="android:tint">#FFFFFF</item>
+    </style>
+
     <style name="greenButton" parent="Widget.MaterialComponents.Button">
         <item name="android:textSize">20sp</item>
         <item name="android:padding">20sp</item>

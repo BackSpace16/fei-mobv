@@ -8,6 +8,7 @@
     <string name="login">Prihlásiť</string>
     <string name="register">Registrovať</string>
     <string name="registration">Registrácia</string>
+    <string name="logout">Odhlásiť sa</string>
     <string name="enter">Zadajte</string>
     <string name="username">užívateľské meno</string>
     <string name="password">heslo</string>

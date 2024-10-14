@@ -3,6 +3,9 @@ package com.example.cv2
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
 import com.mapbox.maps.plugin.gestures.gestures
@@ -31,13 +34,9 @@ class Map : Fragment(R.layout.fragment_map) {
             mapView.getMapboxMap().setCamera(cameraPosition)
         }
 
-        /*mapView.gestures.enableAllGestures()
-
-        mapView.gestures.apply {
-            scrollEnabled = true
-            rotateEnabled = true
-            pitchEnabled = true
-        }*/
+        view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+            view.findNavController().navigate(R.id.logout)
+        }
     }
 
     override fun onStart() {

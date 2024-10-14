@@ -12,6 +12,7 @@
         android:padding="10dp"
         android:layout_weight="1"
         android:src="@drawable/map"
+        style="@style/menuIcon"
         />
 
     <ImageView
@@ -20,7 +21,8 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:layout_weight="1"
-        android:src="@drawable/list"/>
+        android:src="@drawable/list"
+        style="@style/menuIcon"/>
 
     <ImageView
         android:id="@+id/profile"
@@ -28,6 +30,7 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:layout_weight="1"
-        android:src="@drawable/person"/>
+        android:src="@drawable/person"
+        style="@style/menuIcon"/>
 
 </LinearLayout>
