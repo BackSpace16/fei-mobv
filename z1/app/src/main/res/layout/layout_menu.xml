@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:layout_weight="1"
-        android:src="@drawable/map"/>
+        android:src="@drawable/map"
+        />
 
     <ImageView
         android:id="@+id/feed"

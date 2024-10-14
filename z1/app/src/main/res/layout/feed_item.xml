@@ -19,7 +19,7 @@
         android:id="@+id/item_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="19sp"
         android:layout_marginLeft="10dp"
         android:scrollHorizontally="false"
         app:layout_constraintStart_toEndOf="@id/item_image"
