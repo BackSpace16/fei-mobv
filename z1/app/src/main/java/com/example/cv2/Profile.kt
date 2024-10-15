@@ -4,11 +4,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.snackbar.Snackbar
 
 class Profile : Fragment(R.layout.fragment_profile) {
 

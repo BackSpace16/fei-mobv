@@ -26,18 +26,14 @@ class Feed : Fragment(R.layout.fragment_feed) {
             MyItem(R.drawable.img7,"Doscrollovali ste na koniec? Poradíme vám čo ďalej!"),
         ))
 
-
         val snackbar = Snackbar.make(requireActivity().findViewById(R.id.feed), "VYHRAJTE IPHONE 17!!!", Snackbar.LENGTH_LONG)
         snackbar.setAction("IHNEĎ!!!") {
-            // Kód, ktorý sa vykoná po stlačení akcie
             performAction()
         }
         snackbar.show()
     }
 
-    // Metóda pre akciu
     private fun performAction() {
-        // Tu pridaj kód, ktorý sa vykoná pri stlačení akcie
         Toast.makeText(context, "smola, skúste štastie nabudúce", Toast.LENGTH_SHORT).show()
     }
 }

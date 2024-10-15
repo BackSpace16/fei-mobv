@@ -4,14 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
-import com.mapbox.maps.plugin.gestures.gestures
 import com.mapbox.maps.CameraOptions
 import com.mapbox.geojson.Point
-import com.mapbox.maps.plugin.gestures.GesturesPlugin
 
 class Map : Fragment(R.layout.fragment_map) {
 
@@ -20,15 +17,12 @@ class Map : Fragment(R.layout.fragment_map) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Nájdeme MapView
         mapView = view.findViewById(R.id.mapView)
 
-        // Nastavenie štýlu mapy (môže byť napr. satelitný, tmavý, atď.)
         mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS) {
-            // Po načítaní štýlu mapy, nastavíme počiatočnú pozíciu
             val cameraPosition = CameraOptions.Builder()
-                .center(Point.fromLngLat(17.10674, 48.14816))  // Súradnice Bratislavy
-                .zoom(10.0)  // Úroveň priblíženia (12 je dobrá na mesto)
+                .center(Point.fromLngLat(17.10674, 48.14816))
+                .zoom(10.0)
                 .build()
 
             mapView.getMapboxMap().setCamera(cameraPosition)
