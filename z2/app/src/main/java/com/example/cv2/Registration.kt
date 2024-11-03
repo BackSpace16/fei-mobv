@@ -6,40 +6,54 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 
 class Registration : Fragment(R.layout.fragment_registration) {
 
-    private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var viewModel: AuthViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        //sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-        val editText1 = view.findViewById<EditText>(R.id.editText1)
-        val editText2 = view.findViewById<EditText>(R.id.editText2)
-        editText1.hint = getString(R.string.enter) + " email"
-        editText2.hint = getString(R.string.enter) + " " + getString(R.string.username)
-        val editText3 = view.findViewById<EditText>(R.id.editText3)
-        editText3.hint = getString(R.string.enter) + " " + getString(R.string.password)
-        val editText4 = view.findViewById<EditText>(R.id.editText4)
-        editText4.hint = getString(R.string.confirm) + " " + getString(R.string.password)
+        viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
+            override fun <T : ViewModel>create(modelClass: Class<T>): T {
+                return AuthViewModel(DataRepository.getInstance()) as T
+            }
+        })[AuthViewModel::class.java]
 
-        view.findViewById<TextView>(R.id.label2).setText(getString(R.string.username).replaceFirstChar{it.titlecase()} + ":")
-        view.findViewById<TextView>(R.id.label3).setText(getString(R.string.password).replaceFirstChar{it.titlecase()} + ":")
-        view.findViewById<TextView>(R.id.label4).setText(getString(R.string.confirm) + " " + getString(R.string.password) + ":")
-
-        view.findViewById<MaterialButton>(R.id.submitButton).setOnClickListener { view ->
-            val email = editText1?.text.toString()
-            val username = editText2?.text.toString()
-            sharedViewModel.email.value = email
-
-            Log.d("RegistrationFragment", "Zadaný text: $email, $username")
-
-            view.findNavController().navigate(R.id.register_to_login)
+        viewModel.userResult.observe(viewLifecycleOwner){
+            if (it.second != null){
+                requireView().findNavController().navigate(R.id.to_feed)
+            } else{
+                Snackbar.make(
+                    view.findViewById(R.id.submitButton),
+                    it.first,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         }
+
+        view.findViewById<TextView>(R.id.submitButton).apply {
+            setOnClickListener {
+                viewModel.registerUser(
+                    view.findViewById<EditText>(R.id.editText1).text.toString(),
+                    view.findViewById<EditText>(R.id.editText2).text.toString(),
+                    view.findViewById<EditText>(R.id.editText3).text.toString(),
+                    view.findViewById<EditText>(R.id.editText4).text.toString()
+                )
+            }
+        }
+
+        view.findViewById<TextInputLayout>(R.id.input2).setHint(getString(R.string.username).replaceFirstChar{it.titlecase()})
+        view.findViewById<TextInputLayout>(R.id.input1).setHint("e-mail".replaceFirstChar{it.titlecase()})
+        view.findViewById<TextInputLayout>(R.id.input3).setHint(getString(R.string.password).replaceFirstChar{it.titlecase()})
+        view.findViewById<TextInputLayout>(R.id.input4).setHint(getString(R.string.confirm) + " " + getString(R.string.password))
     }
 }
