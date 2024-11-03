@@ -4,10 +4,14 @@ import com.google.gson.Gson
 import java.io.IOException
 
 data class User(
+    val username: String,
+    val email: String,
     val id: String,
     val access: String,
-    val refresh: String
+    val refresh: String,
+    val photo: String = ""
 ) {
+
     fun toJson(): String? {
         return try {
             Gson().toJson(this)

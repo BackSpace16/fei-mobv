@@ -29,13 +29,13 @@ class DataRepository private constructor(
 
         val hashedPassword = hashPassword(password)
         try {
-            val response = service.registerUser(UserRegistration(username, email, hashedPassword))
+            val response = service.registerUser(RegistrationRequest(username, email, hashedPassword))
             if (response.isSuccessful) {
                 response.body()?.let { jsonResponse ->
                     if (jsonResponse.uid == "-1") return Pair("Username already exists", null)
                     if (jsonResponse.uid == "-2") return Pair("E-mail already exists", null)
 
-                    return Pair("", User(jsonResponse.uid, jsonResponse.access, jsonResponse.refresh))
+                    return Pair("", User(username, email, jsonResponse.uid, jsonResponse.access, jsonResponse.refresh))
                 }
             }
             return Pair("Failed to create user", null)
@@ -48,18 +48,18 @@ class DataRepository private constructor(
         return Pair("Fatal error. Failed to create user.", null)
     }
 
-    suspend fun apiLoginUser(nameOrEmail: String, password: String): Pair<String, User?> {
-        if (nameOrEmail.isEmpty()) return Pair("Username or E-mail cannot be empty", null)
+    suspend fun apiLoginUser(username: String, password: String): Pair<String, User?> {
+        if (username.isEmpty()) return Pair("Username or E-mail cannot be empty", null)
         if (password.isEmpty()) return Pair("Password cannot be empty", null)
 
         val hashedPassword = hashPassword(password)
         return try {
-            val response = service.loginUser(UserLogin(nameOrEmail, hashedPassword))
+            val response = service.loginUser(LoginRequest(username, hashedPassword))
             if (response.isSuccessful) {
                 response.body()?.let { jsonResponse ->
                     if (jsonResponse.uid == "-1") return Pair("Username or password is incorrect", null)
 
-                    Pair("", User(jsonResponse.uid, jsonResponse.access, jsonResponse.refresh))
+                    Pair("", User(username, "", jsonResponse.uid, jsonResponse.access, jsonResponse.refresh))
                 } ?: Pair("Failed to login", null)
             } else {
                 Pair("Failed to login", null)
@@ -71,6 +71,36 @@ class DataRepository private constructor(
             ex.printStackTrace()
             Pair("Fatal error. Failed to login.", null)
         }
+    }
+
+    suspend fun apiGetUser(
+        uid: String
+    ): Pair<String, User?> {
+        try {
+            val response = service.getUser(uid)
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    val user = User(it.name, "", it.id, "", "", it.photo)
+                    cache.insertUserItems(
+                        listOf(
+                            UserEntity(
+                                user.id, user.username, "", 0.0, 0.0, 0.0, ""
+                            )
+                        )
+                    )
+                    return Pair("", user)
+                }
+            }
+
+            return Pair("Failed to load user", null)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return Pair("Check internet connection. Failed to load user.", null)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+        return Pair("Fatal error. Failed to load user.", null)
     }
 
     private fun hashPassword(password: String): String {
