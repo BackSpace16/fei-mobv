@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">cv2</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYmFja3NwYWNlMTY2MSIsImEiOiJjbTI3YmZrOXQxOTViMnFzNjF6dWdpNXRtIn0.IZujER-6Cza_xkCNaG0jYg</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title">Zadanie prvé</string>
+    <string name="subtitle">DOMOVINA</string>
+    <string name="login">Prihlásiť</string>
+    <string name="register">Registrovať</string>
+    <string name="registration">Registrácia</string>
+    <string name="logout">Odhlásiť sa</string>
+    <string name="enter">Zadajte</string>
+    <string name="username">užívateľské meno</string>
+    <string name="password">heslo</string>
+    <string name="confirm">Podtvrďte</string>
+</resources>
