@@ -15,17 +15,25 @@
             app:destination="@id/register" />
     </fragment>
 
-    <fragment android:id="@+id/login" android:name="com.example.cv2.Login" />
+    <fragment android:id="@+id/login" android:name="com.example.cv2.Login" >
+        <action
+            android:id="@+id/login_to_feed"
+            app:destination="@id/feed" />
+    </fragment>
     <fragment
         android:id="@+id/register" android:name="com.example.cv2.Registration">
         <action
-            android:id="@+id/register_to_login"
-            app:destination="@id/login" />
+            android:id="@+id/register_to_feed"
+            app:destination="@id/feed" />
     </fragment>
 
     <fragment android:id="@+id/map" android:name="com.example.cv2.Map" />
     <fragment android:id="@+id/feed" android:name="com.example.cv2.Feed" />
-    <fragment android:id="@+id/profile" android:name="com.example.cv2.Profile" />
+    <fragment android:id="@+id/profile" android:name="com.example.cv2.Profile" >
+        <action
+            android:id="@+id/logout"
+            app:destination="@id/intro" />
+    </fragment>
 
     <action
         android:id="@+id/to_map"
@@ -36,8 +44,5 @@
     <action
         android:id="@+id/to_profile"
         app:destination="@id/profile" />
-    <action
-        android:id="@+id/logout"
-        app:destination="@id/intro" />
 
 </navigation>

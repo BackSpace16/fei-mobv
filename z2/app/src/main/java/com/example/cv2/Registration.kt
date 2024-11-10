@@ -49,7 +49,7 @@ class Registration : Fragment(R.layout.fragment_registration) {
             viewModel.userResult.observe(viewLifecycleOwner) {
                 it?.let { user ->
                     PreferenceData.getInstance().putUser(requireContext(), user)
-                    requireView().findNavController().navigate(R.id.to_feed)
+                    requireView().findNavController().navigate(R.id.register_to_feed)
                 } ?: PreferenceData.getInstance().putUser(requireContext(), null)
             }
         }

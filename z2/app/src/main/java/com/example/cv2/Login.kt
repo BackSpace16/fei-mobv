@@ -2,13 +2,11 @@ package com.example.cv2
 
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.cv2.databinding.FragmentLoginBinding
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 
@@ -46,7 +44,7 @@ class Login : Fragment(R.layout.fragment_login) {
             viewModel.userResult.observe(viewLifecycleOwner) {
                 it?.let { user ->
                     PreferenceData.getInstance().putUser(requireContext(), user)
-                    requireView().findNavController().navigate(R.id.to_feed)
+                    requireView().findNavController().navigate(R.id.login_to_feed)
                 } ?: PreferenceData.getInstance().putUser(requireContext(), null)
             }
         }

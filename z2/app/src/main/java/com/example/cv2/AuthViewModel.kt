@@ -24,8 +24,8 @@ class AuthViewModel(private val dataRepository: DataRepository) : ViewModel() {
     fun registerUser() {
         viewModelScope.launch {
             val result = dataRepository.apiRegisterUser(
-                username.value ?: "",
                 email.value ?: "",
+                username.value ?: "",
                 password.value ?: "",
                 repeat_password.value ?: ""
             )
@@ -40,5 +40,9 @@ class AuthViewModel(private val dataRepository: DataRepository) : ViewModel() {
             _loginResult.postValue(result.first ?: "")
             _userResult.postValue(result.second)
         }
+    }
+
+    fun logoutUser() {
+        _userResult.postValue(null)
     }
 }
