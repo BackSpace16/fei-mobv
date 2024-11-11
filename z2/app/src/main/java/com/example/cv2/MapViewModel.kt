@@ -25,17 +25,18 @@ class MapViewModel(private val dataRepository: DataRepository) : ViewModel() {
         val radiusValue = radius.value ?: return
 
         viewModelScope.launch {
-            Log.d("MapFragment", "ViewModel poloha je $latValue $lonValue $radiusValue")
+            Log.d("MapViewModel", "ViewModel poloha je $latValue $lonValue $radiusValue")
             val result = dataRepository.apiUpdateGeofence(latValue, lonValue, radiusValue)
             _updateResult.postValue(result)
         }
     }
 
     fun setLatLon(newLat: Double, newLon: Double) {
+        Log.d("MapViewModel", "setLatLon called with newLat: $newLat, newLon: $newLon")
         if ((lat.value != newLat || lon.value != newLon) && radius.value != null) {
             lat.postValue(newLat)
             lon.postValue(newLon)
-            Log.d("MapViewModel", "Spúšťam updateGeofence")
+            Log.d("MapViewModel", "spustam updateGeofence")
             updateGeofence()
         }
     }

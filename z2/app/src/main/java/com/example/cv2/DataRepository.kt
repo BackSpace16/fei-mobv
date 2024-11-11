@@ -119,6 +119,7 @@ class DataRepository private constructor(
                             resp.me.lat, resp.me.lon, it.radius, it.photo
                         )
                     }
+                    cache.deleteUserItems()
                     cache.insertUserItems(users)
                     return ""
                 }
