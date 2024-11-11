@@ -32,13 +32,11 @@ class Feed : Fragment(R.layout.fragment_feed) {
         binding = FragmentFeedBinding.bind(view).apply {
             lifecycleOwner = viewLifecycleOwner
         }.also { bnd ->
-            //bnd.bottomBar.setActive(BottomBar.FEED)
 
             bnd.feedRecyclerview.layoutManager = LinearLayoutManager(context)
             val feedAdapter = FeedAdapter()
             bnd.feedRecyclerview.adapter = feedAdapter
 
-            // Pozorovanie zmeny hodnoty
             viewModel.feedItems.observe(viewLifecycleOwner) { items ->
                 Log.d("FeedFragment", "nove hodnoty $items")
                 feedAdapter.updateItems(items.filterNotNull() ?: emptyList())

@@ -18,6 +18,8 @@ import com.mapbox.geojson.Point
 import com.mapbox.maps.plugin.annotation.generated.CircleAnnotation
 import com.mapbox.maps.plugin.annotation.generated.CircleAnnotationManager
 import android.util.Log
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.mapbox.android.gestures.MoveGestureDetector
 import com.mapbox.maps.plugin.annotation.annotations
 import com.mapbox.maps.plugin.annotation.generated.CircleAnnotationOptions
@@ -28,12 +30,14 @@ import com.mapbox.maps.plugin.gestures.gestures
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
 import com.example.cv2.databinding.FragmentMapBinding
+import com.google.android.material.snackbar.Snackbar
 
 class Map : Fragment(R.layout.fragment_map) {
     private lateinit var binding: FragmentMapBinding
     private var selectedPoint: CircleAnnotation? = null
     private var lastLocation: Point? = null
     private lateinit var annotationManager: CircleAnnotationManager
+    private lateinit var mapViewModel: MapViewModel
 
     val PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
 
@@ -50,20 +54,24 @@ class Map : Fragment(R.layout.fragment_map) {
         ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
     }
 
-    //private lateinit var mapView: MapView
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMapBinding.inflate(inflater, container, false)
+
+        mapViewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return MapViewModel(DataRepository.getInstance(requireContext())) as T
+            }
+        })[MapViewModel::class.java]
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -86,33 +94,16 @@ class Map : Fragment(R.layout.fragment_map) {
             }
         }
 
-        /*mapView = view.findViewById(R.id.mapView)
-
-        mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS) {
-            val cameraPosition = CameraOptions.Builder()
-                .center(Point.fromLngLat(17.10674, 48.14816))
-                .zoom(10.0)
-                .build()
-
-            mapView.getMapboxMap().setCamera(cameraPosition)
-        }*/
-
+        mapViewModel.updateResult.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                Snackbar.make(
+                    binding.root,
+                    it,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
-
-    /*override fun onStart() {
-        super.onStart()
-        mapView.onStart()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mapView.onStop()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mapView.onDestroy()
-    }*/
 
     private fun onMapReady(enabled: Boolean) {
         binding.mapView.getMapboxMap().setCamera(
@@ -169,6 +160,7 @@ class Map : Fragment(R.layout.fragment_map) {
         lastLocation = point
         addMarker(point)
 
+        mapViewModel.setLatLon(point.latitude(), point.longitude())
     }
 
     private fun addMarker(point: Point) {
