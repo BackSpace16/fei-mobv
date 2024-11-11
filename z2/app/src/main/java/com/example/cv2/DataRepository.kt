@@ -24,7 +24,7 @@ class DataRepository private constructor(
             }
     }
 
-    suspend fun apiRegisterUser(username: String, email: String, password: String, repeatPassword: String) : Pair<String,User?>{
+    suspend fun apiRegisterUser(email: String, username: String, password: String, repeatPassword: String) : Pair<String,User?>{
         if (username.isEmpty()) return Pair("Username cannot be empty", null)
         if (email.isEmpty()) return Pair("E-mail cannot be empty", null)
         if (password.isEmpty()) return Pair("Password cannot be empty", null)
