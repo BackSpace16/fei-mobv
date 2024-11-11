@@ -12,12 +12,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.cv2.databinding.FragmentProfileBinding
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 
 class Profile : Fragment(R.layout.fragment_profile) {
-
-
     private lateinit var viewModel: ProfileViewModel
     private lateinit var authViewModel: AuthViewModel
     private var binding: FragmentProfileBinding? = null
@@ -58,31 +55,13 @@ class Profile : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-
-        val usernameText = view.findViewById<TextView>(R.id.username)
-        val emailText = view.findViewById<TextView>(R.id.email)
-        sharedViewModel.username.observe(viewLifecycleOwner) { userInput ->
-            usernameText.text = userInput
-        }
-        sharedViewModel.email.observe(viewLifecycleOwner) { userInput ->
-            emailText.text = userInput
-        }
-
-        view.findViewById<MaterialButton>(R.id.logout).setOnClickListener { view ->
-            view.findNavController().navigate(R.id.logout)
-        }*/
-
         binding = FragmentProfileBinding.bind(view).apply {
             lifecycleOwner = viewLifecycleOwner
             model = viewModel
         }.also { bnd ->
-
-            bnd.loadProfileBtn.setOnClickListener {
-                val user = PreferenceData.getInstance().getUser(requireContext())
-                user?.let {
-                    viewModel.loadUser(it.id)
-                }
+            val user = PreferenceData.getInstance().getUser(requireContext())
+            user?.let {
+                viewModel.loadUser(it.id)
             }
 
             bnd.logoutBtn.setOnClickListener {
@@ -94,16 +73,12 @@ class Profile : Fragment(R.layout.fragment_profile) {
             viewModel.profileResult.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
                     Snackbar.make(
-                        bnd.loadProfileBtn,
+                        bnd.root,
                         it,
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
             }
-
-            viewModel.sharingLocation.postValue(
-                PreferenceData.getInstance().getSharing(requireContext())
-            )
 
             viewModel.sharingLocation.postValue(
                 PreferenceData.getInstance().getSharing(requireContext())
@@ -120,7 +95,8 @@ class Profile : Fragment(R.layout.fragment_profile) {
                         } else {
                             PreferenceData.getInstance().putSharing(requireContext(), true)
                         }
-                    } else {
+                    }
+                    else {
                         PreferenceData.getInstance().putSharing(requireContext(), false)
                     }
                 }

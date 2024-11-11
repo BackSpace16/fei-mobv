@@ -65,18 +65,6 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/loadProfileBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="jebeti"
-                style="@style/blueButton"
-                app:cornerRadius="100dp"
-                android:layout_marginTop="100dp"
-                app:layout_constraintTop_toBottomOf="@id/email"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <com.google.android.material.button.MaterialButton
                 android:id="@+id/logoutBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,7 +72,7 @@
                 style="@style/redButton"
                 app:cornerRadius="100dp"
                 android:layout_marginTop="100dp"
-                app:layout_constraintTop_toBottomOf="@id/loadProfileBtn"
+                app:layout_constraintTop_toBottomOf="@id/email"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
