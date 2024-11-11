@@ -7,6 +7,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -36,6 +37,14 @@ interface ApiService {
 
     @GET("geofence/list.php")
     suspend fun listGeofence(): Response<GeofenceResponse>
+
+    @POST("geofence/update.php")
+    suspend fun updateGeofence(
+        @Body geofenceInfo: GeofenceRequest
+    ): Response<GeofenceUpdateResponse>
+
+    @DELETE("geofence/update.php")
+    suspend fun removeGeofence(): Response<GeofenceUpdateResponse>
 
     companion object{
         fun create(context: Context): ApiService {
@@ -70,3 +79,5 @@ data class GeofenceResponse(val me: GeofenceMeResponse, val list: List<GeofenceU
 data class GeofenceMeResponse (val uid: String, val lat: Double, val lon: Double, val radius: Double)
 data class GeofenceUserResponse (val uid: String, val radius: Double, val updated: String, val name: String, val photo: String)
 
+data class GeofenceRequest(val lat: Double, val lon: Double, val radius: Double)
+data class GeofenceUpdateResponse(val success: Boolean)

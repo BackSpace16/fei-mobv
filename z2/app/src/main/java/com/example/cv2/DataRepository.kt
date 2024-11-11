@@ -134,6 +134,43 @@ class DataRepository private constructor(
         return "Fatal error. Failed to load users."
     }
 
+    suspend fun apiUpdateGeofence(lat: Double, lon: Double, radius: Double): String {
+        try {
+            val geofenceRequest = GeofenceRequest(lat, lon, radius)
+            val response = service.updateGeofence(geofenceRequest)
+
+            return if (response.isSuccessful && response.body()?.success == true) {
+                ""
+            } else {
+                "Failed to update geofence"
+            }
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return "Check internet connection. Failed to update geofence."
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            return "Fatal error. Failed to update geofence."
+        }
+    }
+
+    suspend fun apiRemoveGeofence(): String {
+        try {
+            val response = service.removeGeofence()
+
+            return if (response.isSuccessful && response.body()?.success == true) {
+                ""
+            } else {
+                "Failed to remove geofence"
+            }
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return "Check internet connection. Failed to remove geofence."
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            return "Fatal error. Failed to remove geofence."
+        }
+    }
+
     fun getUsers() = cache.getUsers()
 
     private fun hashPassword(password: String): String {
