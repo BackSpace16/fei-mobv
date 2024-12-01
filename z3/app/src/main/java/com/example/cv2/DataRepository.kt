@@ -1,6 +1,11 @@
 package com.example.cv2
 
 import android.content.Context
+import android.net.Uri
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 import java.io.IOException
 import java.security.MessageDigest
 
@@ -177,5 +182,27 @@ class DataRepository private constructor(
     private fun hashPassword(password: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(password.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
+    }
+
+    suspend fun apiUploadPhoto(photoUri: Uri): Pair<String, User?> {
+        val file = File(photoUri.path!!)
+        val requestFile = file.asRequestBody("image/jpg".toMediaTypeOrNull())
+        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+
+        val response = service.uploadImage(body)
+        return if (response.isSuccessful) {
+            Pair("Fotka úspešne nahratá", response.body())
+        } else {
+            Pair("Chyba pri nahrávaní", null)
+        }
+    }
+
+    suspend fun apiDeletePhoto(): Pair<String, User?> {
+        val response = service.deleteImage()
+        return if (response.isSuccessful) {
+            Pair("Fotka úspešne vymazaná", response.body())
+        } else {
+            Pair("Chyba pri vymazávaní", null)
+        }
     }
 }

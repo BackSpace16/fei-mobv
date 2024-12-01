@@ -1,6 +1,7 @@
 package com.example.cv2
 
 import android.content.Context
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
@@ -10,7 +11,9 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
@@ -45,6 +48,15 @@ interface ApiService {
 
     @DELETE("geofence/update.php")
     suspend fun removeGeofence(): Response<GeofenceUpdateResponse>
+
+    @Multipart
+    @POST("https://upload.mcomputing.eu/photo.php")
+    suspend fun uploadImage(
+        @Part image: MultipartBody.Part
+    ): Response<User>
+
+    @DELETE("https://upload.mcomputing.eu/photo.php")
+    suspend fun deleteImage(): Response<User>
 
     companion object{
         fun create(context: Context): ApiService {
