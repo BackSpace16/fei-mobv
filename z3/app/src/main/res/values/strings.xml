@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">cv2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="mapbox_access_token">pk.eyJ1IjoiYmFja3NwYWNlMTY2MSIsImEiOiJjbTI3YmZrOXQxOTViMnFzNjF6dWdpNXRtIn0.IZujER-6Cza_xkCNaG0jYg</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title">Assignment The Second</string>
+    <string name="subtitle">HOME SWEET HOME</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="registration">Registration</string>
+    <string name="logout">Logout</string>
+    <string name="enter">Enter</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="confirm">Confirm</string>
+</resources>
