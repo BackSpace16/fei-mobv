@@ -1,5 +1,6 @@
 package com.example.cv2
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,31 @@ class ProfileViewModel(private val dataRepository: DataRepository) : ViewModel()
         viewModelScope.launch {
             val result = dataRepository.apiGetUser(uid)
             _profileResult.postValue(result.first ?: "")
+            _userResult.postValue(result.second)
+        }
+    }
+
+    fun getPhotoUrl(): String {
+        val prefix = "https://upload.mcomputing.eu/"
+        return if (!userResult.value?.photo.isNullOrEmpty()) {
+            prefix + userResult.value?.photo
+        } else {
+            ""
+        }
+    }
+
+    fun uploadPhoto(photoUri: Uri) {
+        viewModelScope.launch {
+            val result = dataRepository.apiUploadPhoto(photoUri)
+            _profileResult.postValue(result.first)
+            _userResult.postValue(result.second)
+        }
+    }
+
+    fun deletePhoto() {
+        viewModelScope.launch {
+            val result = dataRepository.apiDeletePhoto()
+            _profileResult.postValue(result.first)
             _userResult.postValue(result.second)
         }
     }
