@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cv2.databinding.FragmentFeedBinding
@@ -70,8 +71,17 @@ class Feed : Fragment(R.layout.fragment_feed) {
             }
 
 
+            val feedAdapter = FeedAdapter { user ->
+                // Odovzdaj detaily do UserDetailFragment
+                val bundle = Bundle().apply {
+                    putString("userName", user.name)
+                    putString("profileUrl", "https://upload.mcomputing.eu/${user.photo}")
+                }
+
+                findNavController().navigate(R.id.action_feed_to_userDetail, bundle)
+            }
+
             bnd.feedRecyclerview.layoutManager = LinearLayoutManager(context)
-            val feedAdapter = FeedAdapter()
             bnd.feedRecyclerview.adapter = feedAdapter
 
             viewModel.feedItems.observe(viewLifecycleOwner) { items ->

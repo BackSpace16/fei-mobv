@@ -28,7 +28,12 @@
     </fragment>
 
     <fragment android:id="@+id/map" android:name="com.example.cv2.Map" />
-    <fragment android:id="@+id/feed" android:name="com.example.cv2.Feed" />
+    <fragment android:id="@+id/feed" android:name="com.example.cv2.Feed" >
+        <action
+            android:id="@+id/action_feed_to_userDetail"
+            app:destination="@id/userdetail" />
+    </fragment>
+    <fragment android:id="@+id/userdetail" android:name="com.example.cv2.UserDetail" />
     <fragment android:id="@+id/profile" android:name="com.example.cv2.Profile" >
         <action
             android:id="@+id/logout"
