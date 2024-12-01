@@ -9,21 +9,24 @@
 
     <ImageView
         android:id="@+id/item_image"
-        tools:src="@drawable/img4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@id/item_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/profile" />
 
     <TextView
         android:id="@+id/item_text"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="19sp"
+        android:layout_height="40dp"
+        android:gravity="center_vertical|start"
+        android:textSize="22sp"
         android:layout_marginLeft="10dp"
         android:scrollHorizontally="false"
         tools:text="Text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />

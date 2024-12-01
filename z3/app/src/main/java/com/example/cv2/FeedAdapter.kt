@@ -7,8 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class FeedAdapter : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
+class FeedAdapter (
+    val onItemClick: (UserEntity) -> Unit
+) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
+
     private var items: List<UserEntity> = listOf()
 
     class FeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -20,7 +24,20 @@ class FeedAdapter : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
+        val user = items[position]
         holder.itemView.findViewById<TextView>(R.id.item_text).text = items[position].name
+
+        val imageView: ImageView = holder.itemView.findViewById(R.id.item_image)
+
+        Glide.with(holder.itemView.context)
+            .load("https://upload.mcomputing.eu/${user.photo}")  // Kombinovanie URL s photo
+            .placeholder(R.drawable.profile)  // Predvolený obrázok
+            .error(R.drawable.profile)  // Obrázok pri chybe
+            .into(imageView)  // Do imageView, ktorý je v FeedViewHolder
+
+        holder.itemView.setOnClickListener {
+            onItemClick(user)
+        }
     }
 
     override fun getItemCount() = items.size
