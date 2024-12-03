@@ -49,35 +49,6 @@ class Login : Fragment(R.layout.fragment_login) {
             }
         }
 
-            /*viewModel.userResult.observe(viewLifecycleOwner){
-                if (it.second != null){
-                    requireView().findNavController().navigate(R.id.)
-                } else{
-                    Snackbar.make(
-                        view.findViewById(R.id.submitButton),
-                        it.first,
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
-            }*/
-
-
-        /*viewModel.userResult.observe(viewLifecycleOwner) {
-            it?.let { user ->
-                PreferenceData.getInstance().putUser(requireContext(), user)
-                requireView().findNavController().navigate(R.id.to_feed)
-            } ?: PreferenceData.getInstance().putUser(requireContext(), null)
-        }*/
-
-        /*view.findViewById<MaterialButton>(R.id.submitButton).apply {
-            setOnClickListener {
-                viewModel.loginUser(
-                    view.findViewById<EditText>(R.id.editText1).text.toString(),
-                    view.findViewById<EditText>(R.id.editText2).text.toString()
-                )
-            }
-        }*/
-
         view.findViewById<TextInputLayout>(R.id.input1).setHint(getString(R.string.username).replaceFirstChar{it.titlecase()})
         view.findViewById<TextInputLayout>(R.id.input2).setHint(getString(R.string.password).replaceFirstChar{it.titlecase()})
     }

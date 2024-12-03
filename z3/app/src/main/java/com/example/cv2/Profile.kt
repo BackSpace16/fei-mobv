@@ -207,7 +207,7 @@ class Profile : Fragment(R.layout.fragment_profile) {
             Log.d("PhotoUpload", "Photo saved: $it")
 
             val fileUri = Uri.fromFile(it)
-            viewModel.uploadPhoto(fileUri) // Teraz pošleš správny typ Uri
+            viewModel.uploadPhoto(fileUri)
         }
     }
 

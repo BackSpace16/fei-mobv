@@ -54,32 +54,6 @@ class Registration : Fragment(R.layout.fragment_registration) {
             }
         }
 
-        //sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-
-
-        /*viewModel.userResult.observe(viewLifecycleOwner){
-            if (it.second != null){
-                requireView().findNavController().navigate(R.id.to_feed)
-            } else{
-                Snackbar.make(
-                    view.findViewById(R.id.submitButton),
-                    it.first,
-                    Snackbar.LENGTH_SHORT
-                ).show()
-            }
-        }*/
-
-        /*view.findViewById<MaterialButton>(R.id.submitButton).apply {
-            setOnClickListener {
-                viewModel.registerUser(
-                    view.findViewById<EditText>(R.id.editText1).text.toString(),
-                    view.findViewById<EditText>(R.id.editText2).text.toString(),
-                    view.findViewById<EditText>(R.id.editText3).text.toString(),
-                    view.findViewById<EditText>(R.id.editText4).text.toString()
-                )
-            }
-        }*/
-
         view.findViewById<TextInputLayout>(R.id.input2).setHint(getString(R.string.username).replaceFirstChar{it.titlecase()})
         view.findViewById<TextInputLayout>(R.id.input1).setHint("e-mail".replaceFirstChar{it.titlecase()})
         view.findViewById<TextInputLayout>(R.id.input3).setHint(getString(R.string.password).replaceFirstChar{it.titlecase()})

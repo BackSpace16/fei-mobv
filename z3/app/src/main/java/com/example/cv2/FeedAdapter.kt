@@ -30,10 +30,10 @@ class FeedAdapter (
         val imageView: ImageView = holder.itemView.findViewById(R.id.item_image)
 
         Glide.with(holder.itemView.context)
-            .load("https://upload.mcomputing.eu/${user.photo}")  // Kombinovanie URL s photo
-            .placeholder(R.drawable.profile)  // Predvolený obrázok
-            .error(R.drawable.profile)  // Obrázok pri chybe
-            .into(imageView)  // Do imageView, ktorý je v FeedViewHolder
+            .load("https://upload.mcomputing.eu/${user.photo}")
+            .placeholder(R.drawable.profile)
+            .error(R.drawable.profile)
+            .into(imageView)
 
         holder.itemView.setOnClickListener {
             onItemClick(user)
