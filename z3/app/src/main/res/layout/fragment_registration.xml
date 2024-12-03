@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:text="@string/register"
         style="@style/blueButton"
-        app:cornerRadius="10dp"
+        app:cornerRadius="100dp"
         android:onClick="@{()->model.registerUser()}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

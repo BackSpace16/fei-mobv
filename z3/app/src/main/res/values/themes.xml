@@ -34,6 +34,18 @@
         <item name="android:backgroundTint">#C32929</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
+    <style name="blueSmButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">2sp</item>
+        <item name="android:backgroundTint">#2962C3</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="redSmButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">2sp</item>
+        <item name="android:backgroundTint">#C32929</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 
     <style name="Theme.Cv2" parent="Base.Theme.Cv2" />
 </resources>

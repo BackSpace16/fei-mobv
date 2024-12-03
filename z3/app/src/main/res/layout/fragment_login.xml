@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/greenButton"
-            app:cornerRadius="10dp"
+            app:cornerRadius="100dp"
             android:text="@string/login"
             android:onClick="@{()->model.loginUser()}"
             app:layout_constraintBottom_toBottomOf="parent"
